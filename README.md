@@ -9,3 +9,9 @@ This Project was created alongside the ByteGrad Javascript class. This project i
 * Demonstrates the use of the Browser Cache(Local Storage), State, as well as modular code design, written in vanilla Javascript.
 * Allows for Job Searching, Pagination, Bookmarking, Hash-Link-Navigation, and sorting of Job entries.
 * Demonstrates use of webpack, post-css, and babel to create a lightweight, well packaged, and universally-available  App.
+
+
+# How to install 
+
+* `git clone` main or download the zip
+* Run index.html in the dist folder with LiveServer VScode Plugin or open using preferred Browser
