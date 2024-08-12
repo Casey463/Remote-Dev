@@ -1,5 +1,5 @@
 # Remote-DEV 
-Example JavaScript / CSS / HTML that helps software developers find job listings.
+Example JavaScript / CSS / HTML that helps software developers find job listings. Check development branch for full codebase.
 
 ## Part of the Online ByteGrad Class
 
