@@ -8,5 +8,3 @@ import "./components/Pagination.js";
 import "./components/Router.js";
 import "./components/Bookmarks.js";
 import "./components/Storage.js";
-
-import "./index.css";
