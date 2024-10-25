@@ -21,6 +21,10 @@ This Project was created alongside the ByteGrad Javascript class. This project i
 * Production version may availible in the future
 
 
+
+#Details about this versions technologies
+
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
