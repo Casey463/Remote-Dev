@@ -17,7 +17,8 @@ This Project was created alongside the ByteGrad Javascript class. This project i
 # How to install 
 
 * `git clone` main or download the zip
-* Run index.html in the dist folder with LiveServer VScode Plugin 
+* Navigate to root folder and `npm run dev`
+* Production version may availible in the future
 
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
