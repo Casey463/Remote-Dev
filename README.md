@@ -1,4 +1,24 @@
-# React + TypeScript + Vite
+
+
+# Remote-DEV on Vite
+Example JavaScript / CSS / HTML that helps software developers find job listings. This edition uses vite, typescript, and react to create a more up to date and realistic version of the app. 
+
+## Part of the Online ByteGrad Class
+
+This Project was created alongside the ByteGrad Javascript class. This project is sample code that shows how to do the following:
+
+* Create a professional-standard CSS styled HTML page, that reacts to user events such as hovers, and uses up-to-date technology like flex-box.
+* Uses Javascript to create a system that reacts to inputs in a dynamic and consistent way, using queries to the ByteGrad "Example Job Database"
+* Uses Typescript to keep data types consistent, and create a more readable codebase
+* Allows for Job Searching, Pagination, Bookmarking, Hash-Link-Navigation, and sorting of Job entries.
+* Demonstrates use of webpack, post-css, and babel to create a lightweight, well packaged, and universally-available  App.
+
+
+# How to install 
+
+* `git clone` main or download the zip
+* Run index.html in the dist folder with LiveServer VScode Plugin 
+
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
