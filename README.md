@@ -8,8 +8,8 @@ Example JavaScript / CSS / HTML that helps software developers find job listings
 This Project was created alongside the ByteGrad Javascript class. This project is sample code that shows how to do the following:
 
 * Create a professional-standard CSS styled HTML page, that reacts to user events such as hovers, and uses up-to-date technology like flex-box.
-* Uses Javascript to create a system that reacts to inputs in a dynamic and consistent way, using queries to the ByteGrad "Example Job Database"
-* Uses Typescript to keep data types consistent, and create a more readable codebase
+* Uses Javascript to create a system that reacts to inputs in a dynamic and consistent way, using queries to the ByteGrad "Example Job Database".
+* Uses Typescript to keep data types consistent, and create a more readable codebase.
 * Allows for Job Searching, Pagination, Bookmarking, Hash-Link-Navigation, and sorting of Job entries.
 * Demonstrates use of webpack, post-css, and babel to create a lightweight, well packaged, and universally-available  App.
 
