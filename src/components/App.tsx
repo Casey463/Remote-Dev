@@ -36,9 +36,26 @@ function App() {
     <>
       <Background />
 
-      <Header />
+      <Header>
+        <HeaderTop>
+          <Logo />
+          <BookmarksButton />
+        </HeaderTop>
 
-      <Container />
+        <SearchForm searchText={searchText} setSearchText={setSearchText} />
+      </Header>
+
+      <Container>
+        <Sidebar>
+          <SidebarTop>
+            <ResultsCount />
+            <SortingControls />
+          </SidebarTop>
+          <JobList jobItems={jobItems} />
+          <PaginationControls />
+        </Sidebar>
+        <JobItemContent />
+      </Container>
       <Footer />
     </>
   );
