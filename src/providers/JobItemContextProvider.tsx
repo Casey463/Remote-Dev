@@ -1,16 +1,24 @@
 import React, { createContext, useState } from "react";
+import { JobItem } from "../lib/types";
 
 type JobItemProps = {
   children: React.ReactNode;
 };
 
-export const JobItemContext = createContext();
+type JobItemContext = {
+  jobItems: JobItem[];
+  setJobItems: React.Dispatch<React.SetStateAction<JobItem[]>>;
+};
+
+export const JobItemContext = createContext<JobItemContext | null>(null);
 
 export default function JobItemContextProvider({ children }: JobItemProps) {
-  const [jobItems, setJobItems] = useState([]);
+  const [jobItems, setJobItems] = useState<JobItem[]>([]);
   return (
-    <JobItemContext value={(jobItems, setJobItems)}>{children}</JobItemContext>
+    <JobItemContext.Provider value={{ jobItems, setJobItems }}>
+      {children}
+    </JobItemContext.Provider>
   );
 }
 
-export const useJobItemContext = () => React.useContext(JobItemContext); // Custom hook to use the context
+// Custom hook to use the context

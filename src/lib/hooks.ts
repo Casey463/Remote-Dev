@@ -29,3 +29,15 @@ export function useJobItems({ searchText }: useJobItemProps) {
 
   return { jobItems, loading };
 }
+
+export const useJobItemContext = () => {
+  const context = React.useContext(JobItemContext);
+  if (!context) {
+    throw new Error(
+      "useJobItemContext must be used within a JobItemContextProvider"
+    );
+  }
+  return context;
+};
+
+// This line should be inside a component or a custom hook.
