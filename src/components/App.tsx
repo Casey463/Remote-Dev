@@ -12,29 +12,12 @@ import ResultsCount from "./ResultsCount";
 import JobList from "./JobList";
 import PaginationControls from "./PaginationControls";
 import SortingControls from "./SortingControls";
+import { useJobItems } from "../lib/hooks";
 
 function App() {
-  const [jobItems, setJobItems] = useState([]);
   const [searchText, setSearchText] = useState("");
-  const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    if (!searchText) return;
-    try {
-      const search = async () => {
-        setLoading(true);
-        const response = await fetch(
-          `https://byteg  rad.com/course-assets/projects/rmtdev/api/data?search=${searchText}`
-        );
-        const data = await response.json();
-        setLoading(false);
-        setJobItems(data.jobItems);
-      };
+  const { jobItems, loading } = useJobItems({ searchText });
 
-      search();
-    } catch (error) {
-      console.error(`Error fetching data` + error);
-    }
-  }, [searchText]);
   return (
     <>
       <Background />
