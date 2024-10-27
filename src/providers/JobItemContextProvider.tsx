@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { createContext, useState } from "react";
 
-type JobItemProps = {};
+type JobItemProps = {
+  children: React.ReactNode;
+};
 
-export const JobItemContext = React.createContext("");
+export const JobItemContext = createContext();
 
-export default function JobItemContextProvider({ children }) {
+export default function JobItemContextProvider({ children }: JobItemProps) {
   const [jobItems, setJobItems] = useState([]);
   return (
-    <JobItemContext.Provider value={[jobItems, setJobItems]}>
-      {children}
-    </JobItemContext.Provider>
+    <JobItemContext value={(jobItems, setJobItems)}>{children}</JobItemContext>
   );
 }
 
