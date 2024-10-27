@@ -54,7 +54,7 @@ function App() {
             <ResultsCount />
             <SortingControls />
           </SidebarTop>
-          <JobList jobItems={jobItems} />
+          <JobList loading={loading} jobItems={jobItems} />
           <PaginationControls />
         </Sidebar>
         <JobItemContent />
