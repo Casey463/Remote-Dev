@@ -16,14 +16,17 @@ import SortingControls from "./SortingControls";
 function App() {
   const [jobItems, setJobItems] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     if (!searchText) return;
     try {
       const search = async () => {
+        setLoading(true);
         const response = await fetch(
           `https://byteg  rad.com/course-assets/projects/rmtdev/api/data?search=${searchText}`
         );
         const data = await response.json();
+        setLoading(false);
         setJobItems(data.jobItems);
       };
 
