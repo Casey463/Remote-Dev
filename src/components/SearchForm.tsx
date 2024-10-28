@@ -1,6 +1,11 @@
-import { useEffect, useState } from "react";
-
-export default function SearchForm({ searchText, setSearchText }) {
+type searchFormProps = {
+  searchText: string;
+  setSearchText: React.Dispatch<React.SetStateAction<string>>;
+};
+export default function SearchForm({
+  searchText,
+  setSearchText,
+}: searchFormProps) {
   return (
     <form
       onSubmit={(e) => {
