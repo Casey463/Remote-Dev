@@ -6,6 +6,7 @@ import { BASE_API_URL } from "./constants.ts";
 export function useJobItem(id: number | null) {
   const [jobItem, setJobItem] = useState<JobItemExpanded | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     if (!id) return;
     try {
@@ -46,6 +47,7 @@ export function useActiveId() {
 export function useJobItems(searchText: string) {
   const [jobItems, setJobItems] = useState<JobItem[]>([]);
   const [loading, setLoading] = useState(false);
+  const totalNumberOfResults = jobItems.length;
 
   const jobItemsSliced = jobItems.slice(0, 7);
 
@@ -66,7 +68,7 @@ export function useJobItems(searchText: string) {
     }
   }, [searchText]);
 
-  return [jobItemsSliced, loading] as const;
+  return [jobItemsSliced, loading, totalNumberOfResults] as const;
 }
 
 export const useJobItemContext = () => {
