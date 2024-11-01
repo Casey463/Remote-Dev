@@ -68,7 +68,7 @@ export function useJobItems(searchText: string) {
     }
   }, [searchText]);
 
-  return [jobItemsSliced, loading, totalNumberOfResults] as const;
+  return { jobItemsSliced, loading, totalNumberOfResults } as const;
 }
 
 export const useJobItemContext = () => {
