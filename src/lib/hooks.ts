@@ -81,7 +81,7 @@ export const useJobItemContext = () => {
   return context;
 };
 
-export function useDebounce(value: string, delay: number) {
+export function useDebounce<T>(value: T, delay = 250): T {
   const [debouncedValue, setDebouncedValue] = useState(value);
 
   useEffect(() => {
