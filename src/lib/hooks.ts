@@ -4,35 +4,25 @@ import { JobItemContext } from "../providers/JobItemContextProvider";
 import { BASE_API_URL } from "./constants.ts";
 import { useQuery } from "@tanstack/react-query";
 
-// const [jobItem, setJobItem] = useState<JobItemExpanded | null>(null);
-// const [isLoading, setIsLoading] = useState(false);
+type JobItemResponse = {
+  public: boolean;
+  jobItem: JobItemExpanded;
+};
 
-// useEffect(() => {
-//   if (!id) return;
-//   try {
-//     const getJobData = async () => {
-//       setIsLoading(true);
-//       const response = await fetch(`${BASE_API_URL}/${id}`);
-//       const data = await response.json();
-//       setIsLoading(false);
-//       setJobItem(data.jobItem);
-//     };
-//     getJobData();
-//   } catch (error) {
-//     console.error(`Error fetching job data: ${error}`);
-//   }
-// }, [id]);
-
-// return [jobItem, isLoading] as const;
+const fetchJobItem = async (id: number): Promise<JobItemResponse> => {
+  const response = await fetch(`${BASE_API_URL}/${id}`);
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.description);
+  }
+  const data = await response.json();
+  return data;
+};
 
 export function useJobItem(id: number | null) {
-  const { data, isLoading } = useQuery(
+  const { data, isInitialLoading } = useQuery(
     ["job-item", id],
-    async () => {
-      const response = await fetch(`${BASE_API_URL}/${id}`);
-      const data = await response.json();
-      return data;
-    },
+    () => (id ? fetchJobItem(id) : null),
     {
       staleTime: 1000 * 60 * 60,
       refetchOnWindowFocus: false,
@@ -40,8 +30,9 @@ export function useJobItem(id: number | null) {
       onError: (error) => console.error(`Error fetching job data: ${error}`),
     }
   );
-
-  return [data?.jobItem, isLoading] as const;
+  const jobItem = data?.jobItem;
+  const isLoading = isInitialLoading;
+  return { jobItem, isLoading } as const;
 }
 
 export function useActiveId() {
@@ -65,9 +56,6 @@ export function useActiveId() {
 export function useJobItems(searchText: string) {
   const [jobItems, setJobItems] = useState<JobItem[]>([]);
   const [loading, setLoading] = useState(false);
-  const totalNumberOfResults = jobItems.length;
-
-  const jobItemsSliced = jobItems.slice(0, 7);
 
   useEffect(() => {
     if (!searchText) return;
@@ -86,7 +74,7 @@ export function useJobItems(searchText: string) {
     }
   }, [searchText]);
 
-  return { jobItemsSliced, loading, totalNumberOfResults } as const;
+  return { jobItems, loading } as const;
 }
 
 export const useJobItemContext = () => {
