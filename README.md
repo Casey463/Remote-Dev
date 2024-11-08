@@ -3,6 +3,9 @@
 # Remote-DEV on Vite
 Example JavaScript / CSS / HTML that helps software developers find job listings. This edition uses vite, typescript, and react to create a more up to date and realistic version of the app. 
 
+## Demonstrated technologies 
+* Used hashing and per-component fetching ensure users will use minimal amount of resources while allowing for individual lookup and simple return to pages 
+
 ## Part of the Online ByteGrad Class
 
 This Project was created alongside the ByteGrad Javascript class. This project is sample code that shows how to do the following:
