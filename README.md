@@ -4,7 +4,9 @@
 Example JavaScript / CSS / HTML that helps software developers find job listings. This edition uses vite, typescript, and react to create a more up to date and realistic version of the app. 
 
 ## Demonstrated technologies 
-* Used hashing and per-component fetching ensure users will use minimal amount of resources while allowing for individual lookup and simple return to pages 
+* Used hashing and per-component fetching ensure users will use minimal amount of resources while allowing for individual lookup and simple return to pages
+* UseQuery is used to create more readable and feature full fetch requeste.
+* 
 
 ## Part of the Online ByteGrad Class
 
