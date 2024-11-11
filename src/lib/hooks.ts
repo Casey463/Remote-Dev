@@ -4,6 +4,8 @@ import { JobItemContext } from "../providers/JobItemContextProvider";
 import { BASE_API_URL } from "./constants.ts";
 import { useQuery } from "@tanstack/react-query";
 
+import { handleErrors } from "./utils.ts";
+
 type JobItemResponse = {
   public: boolean;
   jobItem: JobItemExpanded;
@@ -28,6 +30,7 @@ export function useJobItem(id: number | null) {
       refetchOnWindowFocus: false,
       enabled: Boolean(id),
       onError: (error) => console.error(`Error fetching job data: ${error}`),
+      onError: (error) => handleErrors(error),
     }
   );
   const jobItem = data?.jobItem;
@@ -71,6 +74,7 @@ export function useJobItems(searchText: string) {
       search();
     } catch (error) {
       console.error(`Error fetching data` + error);
+      onError: (error) => handleErrors(error),
     }
   }, [searchText]);
 
