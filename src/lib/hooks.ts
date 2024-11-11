@@ -36,6 +36,8 @@ export function useJobItem(id: number | null) {
   const jobItem = data?.jobItem;
   const isLoading = isInitialLoading;
   return { jobItem, isLoading } as const;
+
+  return { jobItem: data?.jobItem, isLoading: isInitialLoading } as const;
 }
 
 export function useActiveId() {
@@ -79,6 +81,7 @@ export function useJobItems(searchText: string) {
   }, [searchText]);
 
   return { jobItems, loading } as const;
+  return { jobItems: data?.jobItems, loading: isInitialLoading } as const;
 }
 
 export const useJobItemContext = () => {
