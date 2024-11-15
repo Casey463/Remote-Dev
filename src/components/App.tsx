@@ -27,6 +27,16 @@ function App() {
       currentPage * RESULTS_PER_PAGE - RESULTS_PER_PAGE,
       currentPage * RESULTS_PER_PAGE
     ) || [];
+  // Derived state
+  const jobItemsSorted =
+    jobItems?.sort((a, b) => {
+      if (sortBy === "relevant") {
+        return b.relevanceScore - a.relevanceScore;
+      } else if (sortBy === "recent") {
+        return a.daysAgo - b.daysAgo;
+      }
+      return 0;
+    }) || [];
   const totalNumberOfResults = jobItems?.length || 0;
   const totalNumberOfPages = totalNumberOfResults / RESULTS_PER_PAGE || 0;
 
