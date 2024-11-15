@@ -22,8 +22,6 @@ function App() {
   const { jobItems, loading } = useJobItems(debouncedSearchText);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const jobItemsSliced = jobItems.slice(0, 7);
-  const totalNumberOfResults = jobItems.length;
   const jobItemsSliced =
     jobItems?.slice(
       currentPage * RESULTS_PER_PAGE - RESULTS_PER_PAGE,
@@ -60,7 +58,6 @@ function App() {
             <SortingControls />
           </SidebarTop>
           <JobList loading={loading} jobItems={jobItemsSliced} />
-          <PaginationControls />
           <PaginationControls
             totalNumberOfPages={totalNumberOfPages}
             currentPage={currentPage}
