@@ -15,12 +15,14 @@ import SortingControls from "./SortingControls";
 import { useDebounce, useJobItems } from "../lib/hooks";
 import { Toaster } from "react-hot-toast";
 import { RESULTS_PER_PAGE } from "../lib/constants";
+import { SortBy } from "../lib/types";
 
 function App() {
   const [searchText, setSearchText] = useState("");
   const debouncedSearchText = useDebounce(searchText, 250);
   const { jobItems, loading } = useJobItems(debouncedSearchText);
   const [currentPage, setCurrentPage] = useState(1);
+  const [sortBy, setSortBy] = useState<SortBy>("relevant");
 
   const jobItemsSliced =
     jobItems?.slice(
@@ -44,12 +46,18 @@ function App() {
   const totalNumberOfResults = jobItems?.length || 0;
   const totalNumberOfPages = totalNumberOfResults / RESULTS_PER_PAGE || 0;
 
+  // Event handlers
   const handleChangePage = (direction: "next" | "prev") => {
     if (direction === "next") {
       setCurrentPage((prev) => prev + 1);
     } else if (direction === "prev") {
       setCurrentPage((prev) => prev - 1);
     }
+  };
+
+  const handleChangeSortBy = (newSortBy: SortBy) => {
+    setSortBy(newSortBy);
+    setCurrentPage(1);
   };
 
   return (
