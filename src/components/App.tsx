@@ -29,6 +29,9 @@ function App() {
       currentPage * RESULTS_PER_PAGE - RESULTS_PER_PAGE,
       currentPage * RESULTS_PER_PAGE
     ) || [];
+  const totalNumberOfResults = jobItems?.length || 0;
+  const totalNumberOfPages = totalNumberOfResults / RESULTS_PER_PAGE || 0;
+
   const handleChangePage = (direction: "next" | "prev") => {
     if (direction === "next") {
       setCurrentPage((prev) => prev + 1);
@@ -59,6 +62,7 @@ function App() {
           <JobList loading={loading} jobItems={jobItemsSliced} />
           <PaginationControls />
           <PaginationControls
+            totalNumberOfPages={totalNumberOfPages}
             currentPage={currentPage}
             onClick={handleChangePage}
           />
