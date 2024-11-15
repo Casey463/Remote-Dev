@@ -24,11 +24,6 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [sortBy, setSortBy] = useState<SortBy>("relevant");
 
-  const jobItemsSliced =
-    jobItems?.slice(
-      currentPage * RESULTS_PER_PAGE - RESULTS_PER_PAGE,
-      currentPage * RESULTS_PER_PAGE
-    ) || [];
   // Derived state
   const jobItemsSorted =
     jobItems?.sort((a, b) => {
@@ -77,9 +72,9 @@ function App() {
         <Sidebar>
           <SidebarTop>
             <ResultsCount totalNumberOfResults={totalNumberOfResults} />
-            <SortingControls />
+            <SortingControls onClick={handleChangeSortBy} sortBy={sortBy} />
           </SidebarTop>
-          <JobList loading={loading} jobItems={jobItemsSliced} />
+          <JobList loading={loading} jobItems={jobItemsSortedAndSliced} />
           <PaginationControls
             totalNumberOfPages={totalNumberOfPages}
             currentPage={currentPage}
