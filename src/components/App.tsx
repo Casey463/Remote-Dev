@@ -24,6 +24,11 @@ function App() {
 
   const jobItemsSliced = jobItems.slice(0, 7);
   const totalNumberOfResults = jobItems.length;
+  const jobItemsSliced =
+    jobItems?.slice(
+      currentPage * RESULTS_PER_PAGE - RESULTS_PER_PAGE,
+      currentPage * RESULTS_PER_PAGE
+    ) || [];
   const handleChangePage = (direction: "next" | "prev") => {
     if (direction === "next") {
       setCurrentPage((prev) => prev + 1);
