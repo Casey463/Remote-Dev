@@ -1,18 +1,21 @@
 import { SortBy } from "../lib/types";
 
-export default function Sorting({
-  onClick,
-  sortBy,
-}: {
+type SortingControlsProps = {
   onClick: (newSortBy: SortBy) => void;
-  sortBy: string;
-}) {
+  sortBy: SortBy;
+};
+
+type SortingButtonProps = {
+  children: React.ReactNode;
+  onClick: () => void;
+  isActive: boolean;
+};
+
 export default function Sorting({ onClick, sortBy }: SortingControlsProps) {
   return (
     <section className="sorting">
       <i className="fa-solid fa-arrow-down-short-wide "></i>
 
-      <button
       <SortingButton
         onClick={() => onClick("relevant")}
         isActive={sortBy === "relevant"}
@@ -24,7 +27,6 @@ export default function Sorting({ onClick, sortBy }: SortingControlsProps) {
         isActive={sortBy === "recent"}
       >
         Recent
-      </button>
       </SortingButton>
     </section>
   );
