@@ -5,6 +5,7 @@ import { BASE_API_URL } from "./constants.ts";
 import { useQuery } from "@tanstack/react-query";
 
 import { handleErrors } from "./utils.ts";
+import { BookmarksContext } from "../providers/BookmarksContextProvider.tsx";
 
 type JobItemResponse = {
   public: boolean;
@@ -107,3 +108,13 @@ export function useDebounce<T>(value: T, delay = 250): T {
 
   return debouncedValue;
 }
+
+export const useBookmarksContext = () => {
+  const context = React.useContext(BookmarksContext);
+  if (!context) {
+    throw new Error(
+      "useBookmarks must be used within a BookmarksContextProvider"
+    );
+  }
+  return context;
+};
