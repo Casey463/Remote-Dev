@@ -1,13 +1,9 @@
-import React, { useState } from "react";
 import React, { useEffect, useState } from "react";
 
-export const BookmarksContext = React.createContext(null);
 type BookmarksContextProviderProps = {
   children: React.ReactNode;
 };
 
-export default function BookmarksContextProvider({ children }) {
-  const [bookmarkedIds, setBookmarkedIds] = useState<number[]>([]);
 type BookmarksContext = {
   bookmarkedIds: number[];
   handleToggleBookmark: (id: number) => void;
