@@ -23,7 +23,6 @@ function App() {
   const { jobItems, loading } = useJobItems(debouncedSearchText);
   const [currentPage, setCurrentPage] = useState(1);
   const [sortBy, setSortBy] = useState<SortBy>("relevant");
-  const [bookmarkedIds, setBookmarkedIds] = useState<number[]>([]);
 
   // Derived state
   const jobItemsSorted = [...(jobItems || [])]?.sort((a, b) => {
@@ -42,6 +41,7 @@ function App() {
   const totalNumberOfPages = totalNumberOfResults / RESULTS_PER_PAGE || 0;
 
   // Event handlers
+
   const handleChangePage = (direction: PageDirection) => {
     if (direction === "next") {
       setCurrentPage((prev) => prev + 1);
