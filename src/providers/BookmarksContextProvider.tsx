@@ -18,13 +18,3 @@ export default function BookmarksContextProvider({ children }) {
     </BookmarksContext.Provider>
   );
 }
-
-export const useBookmarks = () => {
-  const context = React.useContext(BookmarksContext);
-  if (!context) {
-    throw new Error(
-      "useBookmarks must be used within a BookmarksContextProvider"
-    );
-  }
-  return context;
-};
