@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useLocalStorage } from "../lib/hooks";
 
 type BookmarksContextProviderProps = {
   children: React.ReactNode;
@@ -18,6 +19,9 @@ export default function BookmarksContextProvider({
 }: BookmarksContextProviderProps) {
   const [bookmarkedIds, setBookmarkedIds] = useState<number[]>(() =>
     JSON.parse(localStorage.getItem("bookmarkedIds") || "[]")
+  const [bookmarkedIds, setBookmarkedIds] = useLocalStorage<number[]>(
+    "bookmarkedIds",
+    []
   );
   
   const handleToggleBookmark = (id: number) => {
