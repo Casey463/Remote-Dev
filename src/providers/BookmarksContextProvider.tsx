@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocalStorage } from "../lib/hooks";
+import { useJobItem, useJobItems, useLocalStorage } from "../lib/hooks";
 
 type BookmarksContextProviderProps = {
   children: React.ReactNode;
@@ -22,6 +22,8 @@ export default function BookmarksContextProvider({
     []
   );
 
+  const { jobItems: bookmarkedJobItems, isLoading } =
+    useJobItems(bookmarkedIds);
   const handleToggleBookmark = (id: number) => {
     if (bookmarkedIds.includes(id)) {
       setBookmarkedIds((prev) => prev.filter((id) => id !== id));
@@ -31,7 +33,14 @@ export default function BookmarksContextProvider({
   };
 
   return (
-    <BookmarksContext.Provider value={{ bookmarkedIds, handleToggleBookmark }}>
+    <BookmarksContext.Provider
+      value={{
+        bookmarkedIds,
+        handleToggleBookmark,
+        bookmarkedJobItems,
+        isLoading,
+      }}
+    >
       {children}
     </BookmarksContext.Provider>
   );
