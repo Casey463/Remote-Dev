@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { JobItem, JobItemExpanded } from "./types.ts";
 import { JobItemContext } from "../providers/JobItemContextProvider";
 import { BASE_API_URL } from "./constants.ts";
-import { useQuery } from "@tanstack/react-query";
+import { useQueries, useQuery } from "@tanstack/react-query";
 
 import { handleErrors } from "./utils.ts";
 import { BookmarksContext } from "../providers/BookmarksContextProvider.tsx";
@@ -37,6 +37,8 @@ export function useJobItem(id: number | null) {
   return { jobItem: data?.jobItem, isLoading: isInitialLoading } as const;
 }
 
+//=========================================================
+
 export function useActiveId() {
   const [activeID, setActiveID] = useState<null | number>(null);
 
@@ -61,6 +63,7 @@ type JobItemsApiResponse = {
   sorted: boolean;
 };
 
+//=========================================================
 const fetchJobItems = async (
   searchText: string
 ): Promise<JobItemsApiResponse> => {
@@ -73,7 +76,8 @@ const fetchJobItems = async (
   return data;
 };
 
-export function useJobItems(searchText: string) {
+//=========================================================
+export function useSearchQuery(searchText: string) {
   const { data, isInitialLoading } = useQuery(
     ["job-items", searchText],
     () => fetchJobItems(searchText),
@@ -88,6 +92,29 @@ export function useJobItems(searchText: string) {
   return { jobItems: data?.jobItems, loading: isInitialLoading } as const;
 }
 
+//=========================================================
+export function useJobItems(ids: number[]) {
+  const results = useQueries({
+    queries: ids.map((id) => ({
+      queryKey: ["job-item", id],
+      queryFN: () => fetchJobItem(id),
+
+      staleTime: 1000 * 60 * 60,
+      refetchOnWindowFocus: false,
+      enabled: Boolean(id),
+      onError: handleErrors,
+    })),
+  });
+  const jobItems = results
+    .map((result) => result.data?.jobItem)
+    .filter((jobItem) => jobItem !== undefined);
+  const isLoading = results.some((result) => result.isLoading);
+
+  return { jobItems, isLoading } as const;
+}
+
+//=========================================================
+
 export const useJobItemContext = () => {
   const context = React.useContext(JobItemContext);
   if (!context) {
@@ -97,6 +124,8 @@ export const useJobItemContext = () => {
   }
   return context;
 };
+
+//=========================================================
 
 export function useDebounce<T>(value: T, delay = 250): T {
   const [debouncedValue, setDebouncedValue] = useState(value);
