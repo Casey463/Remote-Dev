@@ -97,14 +97,16 @@ export function useJobItems(ids: number[]) {
   const results = useQueries({
     queries: ids.map((id) => ({
       queryKey: ["job-item", id],
-      queryFN: () => fetchJobItem(id),
+      queryFn: () => fetchJobItem(id),
 
       staleTime: 1000 * 60 * 60,
       refetchOnWindowFocus: false,
+      retry: false,
       enabled: Boolean(id),
       onError: handleErrors,
     })),
   });
+  console.log(results);
   const jobItems = results
     .map((result) => result.data?.jobItem)
     .filter((jobItem) => jobItem !== undefined);
