@@ -1,5 +1,6 @@
 import React from "react";
-import { useJobItem, useJobItems, useLocalStorage } from "../lib/hooks";
+import { useJobItems, useLocalStorage } from "../lib/hooks";
+import { JobItemExpanded } from "../lib/types";
 
 type BookmarksContextProviderProps = {
   children: React.ReactNode;
@@ -8,6 +9,8 @@ type BookmarksContextProviderProps = {
 type BookmarksContext = {
   bookmarkedIds: number[];
   handleToggleBookmark: (id: number) => void;
+  bookmarkedJobItems: JobItemExpanded[];
+  isLoading: boolean;
 };
 
 export const BookmarksContext = React.createContext<BookmarksContext | null>(
