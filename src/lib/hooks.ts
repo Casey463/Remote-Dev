@@ -163,3 +163,25 @@ export function useLocalStorage<T>(
 
   return [value, setValue] as const;
 }
+
+//=========================================================
+export function useOnClickOutside(
+  refs: React.RefObject<HTMLElement>[],
+  handler: () => void
+) {
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        event.target instanceof HTMLElement &&
+        refs.every((ref) => !ref.current?.contains(event.target as Node))
+      ) {
+        handler();
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [refs, handler]);
+}
