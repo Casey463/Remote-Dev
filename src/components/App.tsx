@@ -29,21 +29,18 @@ function App() {
           <BookmarksButton />
         </HeaderTop>
 
-        <SearchForm searchText={searchText} setSearchText={setSearchText} />
+        <SearchForm />
       </Header>
 
       <Container>
         <Sidebar>
           <SidebarTop>
-            <ResultsCount totalNumberOfResults={totalNumberOfResults} />
-            <SortingControls onClick={handleChangeSortBy} sortBy={sortBy} />
+            <ResultsCount />
+            <SortingControls />
           </SidebarTop>
           <JobList loading={loading} jobItems={jobItemsSortedAndSliced} />
-          <PaginationControls
-            totalNumberOfPages={totalNumberOfPages}
-            currentPage={currentPage}
-            onClick={handleChangePage}
-          />
+
+          <PaginationControls />
         </Sidebar>
         <JobItemContent />
       </Container>
