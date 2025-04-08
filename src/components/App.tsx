@@ -38,7 +38,7 @@ function App() {
             <ResultsCount />
             <SortingControls />
           </SidebarTop>
-          <JobList loading={loading} jobItems={jobItemsSortedAndSliced} />
+          <JobListSearch />
 
           <PaginationControls />
         </Sidebar>
