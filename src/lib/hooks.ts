@@ -6,6 +6,8 @@ import { useQueries, useQuery } from "@tanstack/react-query";
 
 import { handleErrors } from "./utils.ts";
 import { BookmarksContext } from "../providers/BookmarksContextProvider.tsx";
+import { ActiveIDContext } from "../providers/ActiveIDContexrProvider.tsx";
+import { SearchTextContext } from "../providers/SearchTextContextProvider.tsx";
 
 type JobItemResponse = {
   public: boolean;
@@ -140,6 +142,8 @@ export function useDebounce<T>(value: T, delay = 250): T {
   return debouncedValue;
 }
 
+//=========================================================
+
 export const useBookmarksContext = () => {
   const context = React.useContext(BookmarksContext);
   if (!context) {
@@ -150,6 +154,17 @@ export const useBookmarksContext = () => {
   return context;
 };
 
+//=========================================================
+
+export const useActiveIDContext = () => {
+  const context = React.useContext(ActiveIDContext);
+  if (!context) {
+    throw new Error(
+      "useActiveID must be used within a ActiveIDContextProvider"
+    );
+  }
+  return context;
+};
 export function useLocalStorage<T>(
   key: string,
   initialValue: T
