@@ -165,6 +165,21 @@ export const useActiveIDContext = () => {
   }
   return context;
 };
+
+//=========================================================
+
+export const useSearchTextContext = () => {
+  const context = React.useContext(SearchTextContext);
+  if (!context) {
+    throw new Error(
+      "useSearchText must be used within a SearchTextContextProvider"
+    );
+  }
+  return context;
+};
+
+//=========================================================
+
 export function useLocalStorage<T>(
   key: string,
   initialValue: T
