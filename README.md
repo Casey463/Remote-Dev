@@ -5,9 +5,9 @@ Example JavaScript / CSS / HTML that helps software developers find job listings
 
 ## Demonstrated technologies 
 * Used hashing and per-component fetching ensure users will use minimal amount of resources while allowing for individual lookup and simple return to pages
-* UseQuery is used to create more readable and feature full fetch requeste
+* UseQuery is used to create more readable and feature full fetch requests thats cache 
 * Requests are debounced to create a quick but server efficent app lifecycle
-* Effect components are simplified and distributed via a custom hook files to allow for global access, compliance to DRY and quick modificiation of app functionality 
+* Effect components are simplified and distributed via a custom hook files to allow for global access, compliance to DRY and quick modificiation of app functionality.
 
 ## Part of the Online ByteGrad Class
 
